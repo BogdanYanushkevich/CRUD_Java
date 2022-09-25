@@ -15,7 +15,7 @@ public class SkillView extends GeneralView {
                 print("Enter skill name: ");
                 Skill skill = Static.skillController.create();
 
-                if (skill != null) {
+                if (checkForNull(skill)) {
                     print("You added: ", skill);
                     Static.skillView.checkChoice();
                 } else {
@@ -32,7 +32,7 @@ public class SkillView extends GeneralView {
             case 3 -> {
                 print("Enter the ID of the element you want to change: ");
                 Skill skill = Static.skillController.update();
-                if (skill == null) {
+                if (checkForNull(skill)) {
                     print("Incorrect element ID, please try again.");
                     Static.skillView.checkChoice();
 
@@ -45,7 +45,7 @@ public class SkillView extends GeneralView {
             case 4 -> {
                 print("Enter the ID of the element you want to delete: ");
                 Skill skill = Static.skillController.delete();
-                if (skill != null) {
+                if (checkForNull(skill)) {
                     print("You deleted: ", skill);
                     Static.skillView.checkChoice();
                 } else {
@@ -80,4 +80,11 @@ public class SkillView extends GeneralView {
         System.out.println(message);
     }
 
+
+    public boolean checkForNull(Skill skill) {
+        return skill == null;
+    }
+
 }
+
+

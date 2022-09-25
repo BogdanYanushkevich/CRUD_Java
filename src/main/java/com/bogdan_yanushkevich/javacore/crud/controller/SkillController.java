@@ -28,7 +28,7 @@ public class SkillController {
         Long field = checkCorrect();
         Skill updSkill = Static.skillRepository.read(field);
 
-        if (updSkill == null) {
+        if (Static.skillView.checkForNull(updSkill)) {
             return null;
         } else {
             Static.skillView.print("Please enter new name: ");
