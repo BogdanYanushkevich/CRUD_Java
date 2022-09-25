@@ -98,7 +98,12 @@ public class GsonSkillRepositoryImpl implements SkillRepository {
         try (Reader reader = new FileReader(file)) {
             Type type = new TypeToken<ArrayList<Skill>>() {
             }.getType();
+
             skills = new Gson().fromJson(reader, type);
+            if (skills == null) {
+                skills = new ArrayList<>();
+                return skills;
+            }
         } catch (IOException e) {
             // Everything goes according to plan
         }

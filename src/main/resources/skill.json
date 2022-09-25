@@ -1,27 +1,7 @@
 [
   {
-    "name": "1",
-    "status": "ACTIVE",
-    "id": 0
-  },
-  {
-    "name": "2",
-    "status": "DELETED",
-    "id": 1
-  },
-  {
-    "name": "3",
-    "status": "ACTIVE",
-    "id": 2
-  },
-  {
-    "name": "4",
-    "status": "DELETED",
-    "id": 3
-  },
-  {
     "name": "123",
     "status": "ACTIVE",
-    "id": 4
+    "id": 0
   }
 ]
