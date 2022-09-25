@@ -49,6 +49,7 @@ public class SkillController {
         } else {
             updSkill = Static.skillRepository.delete(updSkill);
         }
+
         return updSkill;
     }
 
