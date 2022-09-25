@@ -32,11 +32,12 @@ public class SkillView extends GeneralView {
             case 3 -> {
                 print("Enter the ID of the element you want to change: ");
                 Skill skill = Static.skillController.update();
-                if (skill != null) {
-                    print("You changed: ", skill);
-                    Static.skillView.checkChoice();
-                } else {
+                if (skill == null) {
                     print("Incorrect element ID, please try again.");
+                    Static.skillView.checkChoice();
+
+                } else {
+                    print("You changed: ", skill);
                     Static.skillView.checkChoice();
                 }
 
@@ -54,7 +55,7 @@ public class SkillView extends GeneralView {
             }
             case 5 -> {
                 List<Skill> skills = Static.skillController.showAll();
-                printItr(skills);
+                print(skills);
                 Static.skillView.checkChoice();
             }
             case 0 -> ConsoleRunner.run();
@@ -62,7 +63,7 @@ public class SkillView extends GeneralView {
     }
 
 
-    private void printItr(List<Skill> skills) {
+    private void print(List<Skill> skills) {
         Iterator<Skill> itr = skills.listIterator();
         itr.forEachRemaining(System.out::println);
     }

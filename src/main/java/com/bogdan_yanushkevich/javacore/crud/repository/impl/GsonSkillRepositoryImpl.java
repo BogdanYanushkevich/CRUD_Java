@@ -52,13 +52,20 @@ public class GsonSkillRepositoryImpl implements SkillRepository {
     public Skill update(Skill obj) {
 
         List<Skill> skills = getFromJson();
-        for (Skill s : skills) {
-            if (s.getId().equals(obj.getId())) {
-                s.setName(obj.getName());
-                addToJson(skills);
-                return s;
+        if (checkForRepeats(obj.getName())) {
+            return null;
+        } else {
+            for (Skill s : skills) {
+
+                if (s.getId().equals(obj.getId())) {
+                    s.setName(obj.getName());
+                    addToJson(skills);
+                    return s;
+                }
             }
+
         }
+
         return null;
     }
 
