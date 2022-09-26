@@ -7,68 +7,36 @@ import java.util.*;
 
 public class SkillController {
 
-    public Skill create() {
+    public Skill create(Skill skill) {
 
-        Skill skill = new Skill();
-        Scanner sc = new Scanner(System.in);
-        String field = sc.nextLine();
-        skill.setName(field);
         skill = Static.skillRepository.create(skill);
 
         return skill;
     }
 
-    public Skill read() {
-        Long field = checkCorrect();
+    public Skill read(Long field) {
+
         return Static.skillRepository.read(field);
     }
 
-    public Skill update() {
-        Scanner sc = new Scanner(System.in);
-        Long field = checkCorrect();
-        Skill updSkill = Static.skillRepository.read(field);
+    public Skill update(Skill updSkill) {
 
-        if (!Static.skillView.checkForNull(updSkill)) {
-            return null;
-        } else {
-            Static.skillView.print("Please enter new name: ");
-            String name = sc.nextLine();
-            updSkill.setName(name);
-            Static.skillRepository.update(updSkill);
-        }
+        updSkill.setName(updSkill.getName());
+        Static.skillRepository.update(updSkill);
+
         return updSkill;
     }
 
 
-    public Skill delete() {
-        Long field = checkCorrect();
-        Skill updSkill = Static.skillRepository.read(field);
+    public void delete(Skill updSkill) {
 
-        if (Static.skillRepository.delete(updSkill)) {
-            return Static.skillRepository.read(updSkill.getId());
-        } else {
-            return null;
-        }
+        Static.skillRepository.delete(updSkill);
+
     }
 
     public List<Skill> showAll() {
         return Static.skillRepository.getALl();
     }
 
-    private Long checkCorrect() {
-        Scanner sc = new Scanner(System.in);
-        long field;
-        while (true) {
-            try {
-                field = Long.parseLong(sc.nextLine());
-                break;
-
-            } catch (NumberFormatException e) {
-                System.out.println("Invalid input. Repeat entry");
-                Static.skillView.checkChoice();
-            }
-        }
-        return field;
-    }
-
 }
+
