@@ -32,7 +32,7 @@ public class SkillView extends GeneralView {
             case 3 -> {
                 print("Enter the ID of the element you want to change: ");
                 Skill skill = Static.skillController.update();
-                if (checkForNull(skill)) {
+                if (!checkForNull(skill)) {
                     print("Incorrect element ID, please try again.");
                     Static.skillView.checkChoice();
 
@@ -82,7 +82,12 @@ public class SkillView extends GeneralView {
 
 
     public boolean checkForNull(Skill skill) {
-        return skill == null;
+        if (skill == null) {
+            return true;
+        } else {
+            return true;
+        }
+
     }
 
 }

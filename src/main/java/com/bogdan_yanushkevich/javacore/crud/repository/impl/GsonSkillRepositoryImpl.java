@@ -30,9 +30,9 @@ public class GsonSkillRepositoryImpl implements SkillRepository {
 
         if (!checkForRepeats(obj.getName())) {
 
-            obj.setId(generateID());
+            obj.setId(generateID(skills));
             skills.add(obj);
-            addToJson(skills);
+            writeToJson(skills);
 
         } else {
             return null;
@@ -59,7 +59,7 @@ public class GsonSkillRepositoryImpl implements SkillRepository {
 
                 if (s.getId().equals(obj.getId())) {
                     s.setName(obj.getName());
-                    addToJson(skills);
+                    writeToJson(skills);
                     return s;
                 }
             }
@@ -70,16 +70,16 @@ public class GsonSkillRepositoryImpl implements SkillRepository {
     }
 
     @Override
-    public Skill delete(Skill obj) {
+    public boolean delete(Skill obj) {
         List<Skill> skills = getFromJson();
         for (Skill s : skills) {
             if (s.getId().equals(obj.getId())) {
                 s.setStatus(Status.DELETED);
-                addToJson(skills);
-                return s;
+                writeToJson(skills);
+                return true;
             }
         }
-        return null;
+        return false;
     }
 
     @Override
@@ -89,7 +89,7 @@ public class GsonSkillRepositoryImpl implements SkillRepository {
     }
 
 
-    private void addToJson(List<Skill> skills) {
+    private void writeToJson(List<Skill> skills) {
 
         try (FileWriter fw = new FileWriter(file)) {
             gson.toJson(skills, fw);
@@ -117,14 +117,13 @@ public class GsonSkillRepositoryImpl implements SkillRepository {
         return skills;
     }
 
-    private long generateID() {
+    private long generateID(List<Skill> skills) {
 
-        List<Skill> skills = getFromJson();
         long id = 0;
 
         if (skills.size() != 0) {
             Optional<Skill> s = skills.stream().max(Comparator.comparing(Skill::getId));
-            id = s.get().getId() + 1;
+            id = 1 + s.get().getId();
         } else return id;
         return id;
     }

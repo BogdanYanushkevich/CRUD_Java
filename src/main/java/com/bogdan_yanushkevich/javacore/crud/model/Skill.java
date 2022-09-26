@@ -1,6 +1,7 @@
 package com.bogdan_yanushkevich.javacore.crud.model;
 
-public class Skill extends GenStatus {
+public class Skill extends BaseEntity<Long> {
+
 
     private String name;
 

@@ -2,7 +2,7 @@ package com.bogdan_yanushkevich.javacore.crud.model;
 
 import java.util.List;
 
-public class Developer extends GenStatus {
+public class Developer extends BaseEntity {
 
 
     private String firstName;

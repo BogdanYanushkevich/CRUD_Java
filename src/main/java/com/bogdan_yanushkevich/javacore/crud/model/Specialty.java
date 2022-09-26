@@ -1,6 +1,6 @@
 package com.bogdan_yanushkevich.javacore.crud.model;
 
-public class Specialty extends GenStatus {
+public class Specialty extends BaseEntity {
 
     private String name;
 

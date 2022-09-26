@@ -28,7 +28,7 @@ public class SkillController {
         Long field = checkCorrect();
         Skill updSkill = Static.skillRepository.read(field);
 
-        if (Static.skillView.checkForNull(updSkill)) {
+        if (!Static.skillView.checkForNull(updSkill)) {
             return null;
         } else {
             Static.skillView.print("Please enter new name: ");
@@ -44,13 +44,11 @@ public class SkillController {
         Long field = checkCorrect();
         Skill updSkill = Static.skillRepository.read(field);
 
-        if (updSkill == null) {
-            return null;
+        if (Static.skillRepository.delete(updSkill)) {
+            return Static.skillRepository.read(updSkill.getId());
         } else {
-            updSkill = Static.skillRepository.delete(updSkill);
+            return null;
         }
-
-        return updSkill;
     }
 
     public List<Skill> showAll() {

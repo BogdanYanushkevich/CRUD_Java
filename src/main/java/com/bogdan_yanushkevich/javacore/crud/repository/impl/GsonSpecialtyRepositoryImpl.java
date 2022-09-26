@@ -24,8 +24,8 @@ public class GsonSpecialtyRepositoryImpl implements SpecialtyRepository {
     }
 
     @Override
-    public Specialty delete(Specialty obj) {
-        return null;
+    public boolean delete(Specialty obj) {
+        return false;
     }
 
     @Override

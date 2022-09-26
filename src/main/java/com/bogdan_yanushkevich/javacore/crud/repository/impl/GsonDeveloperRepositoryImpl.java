@@ -25,8 +25,8 @@ public class GsonDeveloperRepositoryImpl implements DeveloperRepository {
     }
 
     @Override
-    public Developer delete(Developer obj) {
-        return null;
+    public boolean delete(Developer obj) {
+        return false;
     }
 
     @Override
