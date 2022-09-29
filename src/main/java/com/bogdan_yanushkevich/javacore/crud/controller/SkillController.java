@@ -1,41 +1,39 @@
 package com.bogdan_yanushkevich.javacore.crud.controller;
 
 import com.bogdan_yanushkevich.javacore.crud.model.Skill;
-import com.bogdan_yanushkevich.javacore.crud.view.Static;
+import com.bogdan_yanushkevich.javacore.crud.repository.impl.GsonSkillRepositoryImpl;
+
 
 import java.util.*;
 
+
 public class SkillController {
+
+    private final GsonSkillRepositoryImpl sr = new GsonSkillRepositoryImpl();
 
     public Skill create(Skill skill) {
 
-        skill = Static.skillRepository.create(skill);
-
-        return skill;
+        return sr.create(skill);
     }
 
     public Skill read(Long field) {
 
-        return Static.skillRepository.read(field);
+        return sr.read(field);
     }
 
     public Skill update(Skill updSkill) {
 
-        updSkill.setName(updSkill.getName());
-        Static.skillRepository.update(updSkill);
-
-        return updSkill;
+        return sr.update(updSkill);
     }
 
 
     public void delete(Skill updSkill) {
 
-        Static.skillRepository.delete(updSkill);
-
+        sr.delete(updSkill);
     }
 
     public List<Skill> showAll() {
-        return Static.skillRepository.getALl();
+        return sr.getALl();
     }
 
 }

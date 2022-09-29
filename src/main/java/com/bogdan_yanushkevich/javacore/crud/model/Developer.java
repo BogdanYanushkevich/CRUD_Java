@@ -1,22 +1,17 @@
 package com.bogdan_yanushkevich.javacore.crud.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class Developer extends BaseEntity {
+public class Developer extends BaseEntity<Long> {
 
 
-    private String firstName;
     private String lastName;
     List<Skill> skills;
-    Specialty specialty;
+    private Specialty specialty;
 
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    {
+        skills = new ArrayList<>();
     }
 
     public String getLastName() {
@@ -28,11 +23,18 @@ public class Developer extends BaseEntity {
     }
 
     public List<Skill> getSkills() {
+
         return skills;
     }
 
-    public void addSkills(Skill skill) {
+
+    public void addSkill(Skill skill) {
         skills.add(skill);
+    }
+
+    public void addSkills(List<Skill> nSkills) {
+
+        this.skills = nSkills;
     }
 
     public Specialty getSpecialty() {
@@ -41,5 +43,17 @@ public class Developer extends BaseEntity {
 
     public void setSpecialty(Specialty specialty) {
         this.specialty = specialty;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Developer | " +
+                "\tID: " + getId() + " \t| " +
+                "\tName: " + getName() + " \t| " +
+                "\tLastName: " + getLastName() + " \t| " +
+                "\tSkills: " + getSkills() + " \t| " +
+                "\tSpecialty: " + getSpecialty() + " \t| " +
+                "\tStatus: " + getStatus();
     }
 }

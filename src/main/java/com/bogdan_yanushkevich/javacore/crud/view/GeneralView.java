@@ -1,8 +1,15 @@
 package com.bogdan_yanushkevich.javacore.crud.view;
 
+
+import java.util.Iterator;
+import java.util.List;
 import java.util.Scanner;
 
-public class GeneralView {
+public class GeneralView<T> {
+
+
+    private final Scanner sc = new Scanner(System.in);
+
 
     public void menuTitle() {
         System.out.println("""
@@ -20,44 +27,75 @@ public class GeneralView {
 
     }
 
-    public void makeChoice(int choice) {
-        switch (choice) {
-            case 1 -> {
+    public void makeChoice() {
 
-            }
-            case 2 -> {
-
-            }
-            case 3 -> {
-
-            }
-            case 4 -> {
-
-            }
-            case 5 -> {
-
-            }
-            case 0 -> {
+        switch (checkChoice(5, 0)) {
+            case 1, 2, 3, 4, 5, 0 -> {
 
             }
         }
     }
 
-    public void checkChoice() {
+    public int checkChoice(int caseSize, int minCase) {
 
-        menuTitle();
+
         int choice;
         Scanner sc = new Scanner(System.in);
         try {
             choice = Integer.parseInt(sc.nextLine());
-            if (choice > 5 || choice < 0) {
+            if (choice > caseSize || choice < minCase) {
                 System.out.println("Invalid option. Try again.\n");
-                checkChoice();
+                checkChoice(caseSize, minCase);
             }
-            makeChoice(choice);
+            return choice;
         } catch (NumberFormatException e) {
             System.out.println("Invalid input. Repeat entry");
-            checkChoice();
+            checkChoice(caseSize, minCase);
         }
+        return -1;
     }
+
+    protected Long checkCorrect() {
+        long field;
+        while (true) {
+            try {
+                field = Long.parseLong(sc.nextLine());
+                break;
+
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Repeat entry");
+                checkCorrect();
+            }
+        }
+        return field;
+    }
+
+
+    protected boolean checkForNull(T entity) {
+        return entity == null;
+    }
+
+
+    protected String addLine() {
+
+        return sc.nextLine();
+    }
+
+    protected void print(List<T> entity) {
+        Iterator<T> itr = entity.listIterator();
+        itr.forEachRemaining(System.out::println);
+    }
+
+    protected void print(T entity) {
+        System.out.println(entity);
+    }
+
+    protected void print(String message, T entity) {
+        System.out.println(message + entity);
+    }
+
+    protected void print(String message) {
+        System.out.println(message);
+    }
+
 }

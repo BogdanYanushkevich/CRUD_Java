@@ -1,22 +1,13 @@
 package com.bogdan_yanushkevich.javacore.crud.model;
 
-public class Specialty extends BaseEntity {
+public class Specialty extends BaseEntity<Long> {
 
-    private String name;
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
     @Override
     public String toString() {
-        return "Skill{" +
-                "name='" + name + '\'' +
-                "id='" + getId() + '\'' +
-                "status='" + getStatus() + '\'' +
-                '}';
+        return "Specialty | " +
+                "\tID: " + getId() + " \t| " +
+                "Name: " + getName() + " \t| " +
+                "Status: " + getStatus();
     }
 }

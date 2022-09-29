@@ -31,6 +31,7 @@ public class GsonSkillRepositoryImpl implements SkillRepository {
         if (!checkForRepeats(obj.getName())) {
 
             obj.setId(generateID(skills));
+            obj.setStatus(Status.ACTIVE);
             skills.add(obj);
             writeToJson(skills);
 
@@ -70,16 +71,14 @@ public class GsonSkillRepositoryImpl implements SkillRepository {
     }
 
     @Override
-    public boolean delete(Skill obj) {
+    public void delete(Skill obj) {
         List<Skill> skills = getFromJson();
         for (Skill s : skills) {
             if (s.getId().equals(obj.getId())) {
                 s.setStatus(Status.DELETED);
                 writeToJson(skills);
-                return true;
             }
         }
-        return false;
     }
 
     @Override

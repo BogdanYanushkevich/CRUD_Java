@@ -1,33 +1,31 @@
 package com.bogdan_yanushkevich.javacore.crud.view;
 
+import com.bogdan_yanushkevich.javacore.crud.controller.SkillController;
 import com.bogdan_yanushkevich.javacore.crud.model.Skill;
 
-import java.util.Iterator;
 import java.util.List;
-import java.util.Scanner;
 
 
-public class SkillView extends GeneralView {
+public class SkillView extends GeneralView<Skill> {
 
-    private final Scanner sc = new Scanner(System.in);
-    private Long id;
+    SkillController sc = new SkillController();
 
 
     @Override
-    public void makeChoice(int choice) {
-        switch (choice) {
+    public void makeChoice() {
+        menuTitle();
+        Long id;
+        switch (checkChoice(5, 0)) {
             case 1 -> {
                 Skill skill = new Skill();
                 print("Enter skill name: ");
-                String name = sc.nextLine();
-                skill.setName(name);
-
-                if (!checkForNull(Static.skillController.create(skill))) {
+                skill.setName(addLine());
+                if (!checkForNull(sc.create(skill))) {
                     print("You added: ", skill);
-                    Static.skillView.checkChoice();
+                    makeChoice();
                 } else {
                     print("The object already exists, please try again.");
-                    Static.skillView.checkChoice();
+                    makeChoice();
                 }
 
             }
@@ -35,12 +33,12 @@ public class SkillView extends GeneralView {
                 print("Enter ID: ");
                 id = checkCorrect();
 
-                if (checkForNull(Static.skillController.read(id))) {
+                if (checkForNull(sc.read(id))) {
                     print("Incorrect element ID, please try again.");
-                    Static.skillView.checkChoice();
+                    makeChoice();
                 } else {
-                    print(Static.skillController.read(id));
-                    Static.skillView.checkChoice();
+                    print(sc.read(id));
+                    makeChoice();
                 }
 
             }
@@ -49,21 +47,20 @@ public class SkillView extends GeneralView {
 
                 print("Enter the ID of the element you want to change: ");
                 id = checkCorrect();
-                Skill skill = Static.skillController.read(id);
+                Skill skill = sc.read(id);
 
                 if (checkForNull(skill)) {
                     print("Incorrect element ID, please try again.");
-                    Static.skillView.checkChoice();
+                    makeChoice();
 
                 } else {
 
                     print("Please enter new name: ");
-                    String name = sc.nextLine();
-                    skill.setName(name);
-                    skill = Static.skillController.update(skill);
+                    skill.setName(addLine());
+                    skill = sc.update(skill);
 
                     print("You changed: ", skill);
-                    Static.skillView.checkChoice();
+                    makeChoice();
                 }
 
             }
@@ -71,71 +68,30 @@ public class SkillView extends GeneralView {
 
                 print("Enter the ID of the element you want to delete: ");
                 id = checkCorrect();
-                Skill skill = Static.skillController.read(id);
+                Skill skill = sc.read(id);
 
                 if (!checkForNull(skill)) {
-                    Static.skillController.delete(skill);
-                    skill = Static.skillController.read(id);
+                    sc.delete(skill);
+                    skill = sc.read(id);
                     print("You deleted: ", skill);
+                    makeChoice();
 
-                    Static.skillView.checkChoice();
                 } else {
                     print("Incorrect element ID, please try again.");
-                    Static.skillView.checkChoice();
+                    makeChoice();
                 }
             }
             case 5 -> {
-                List<Skill> skills = Static.skillController.showAll();
+                List<Skill> skills = sc.showAll();
                 print(skills);
-                Static.skillView.checkChoice();
+                makeChoice();
             }
-            case 0 -> ConsoleRunner.run();
-        }
-    }
-
-
-    private void print(List<Skill> skills) {
-        Iterator<Skill> itr = skills.listIterator();
-        itr.forEachRemaining(System.out::println);
-    }
-
-    private void print(Skill skill) {
-        System.out.println(skill);
-    }
-
-    private void print(String message, Skill skill) {
-        System.out.println(message + skill);
-    }
-
-    public void print(String message) {
-        System.out.println(message);
-    }
-
-
-    public boolean checkForNull(Skill skill) {
-        if (skill == null) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-
-    private Long checkCorrect() {
-        long field;
-        while (true) {
-            try {
-                field = Long.parseLong(sc.nextLine());
-                break;
-
-            } catch (NumberFormatException e) {
-                System.out.println("Invalid input. Repeat entry");
-                Static.skillView.checkChoice();
+            case 0 -> {
+                ConsoleRunner cr = new ConsoleRunner();
+                cr.run();
             }
         }
-        return field;
     }
-
 }
 
 

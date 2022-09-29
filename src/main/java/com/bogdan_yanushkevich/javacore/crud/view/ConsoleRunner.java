@@ -1,11 +1,13 @@
 package com.bogdan_yanushkevich.javacore.crud.view;
 
-import com.bogdan_yanushkevich.javacore.crud.controller.SkillController;
-import com.bogdan_yanushkevich.javacore.crud.repository.impl.GsonSkillRepositoryImpl;
 
 import java.util.Scanner;
 
 public class ConsoleRunner {
+
+    private final DeveloperView dv = new DeveloperView();
+    private final SkillView skillView = new SkillView();
+    private final SpecialtyView specView = new SpecialtyView();
 
 
     private static String menuTitle() {
@@ -19,9 +21,9 @@ public class ConsoleRunner {
     }
 
 
-    public static void run() {
+    public void run() {
 
-        System.out.println(menuTitle());
+        System.out.print(menuTitle());
         Scanner sc = new Scanner(System.in);
         int choice;
         try {
@@ -31,21 +33,12 @@ public class ConsoleRunner {
                 run();
             }
             switch (choice) {
-                case 1 -> {
-                    DeveloperView dv = new DeveloperView();
-                    dv.menuTitle();
-                    dv.checkChoice();
-                }
-                case 2 -> {
-                    Static.skillView.checkChoice();
-                }
-                case 3 -> {
-                    SpecialtyView spv = new SpecialtyView();
-                    spv.menuTitle();
-                    spv.checkChoice();
-                }
+                case 1 -> dv.makeChoice();
+
+                case 2 -> skillView.makeChoice();
+
+                case 3 -> specView.makeChoice();
                 case 0 -> {
-                    break;
                 }
             }
         } catch (NumberFormatException e) {

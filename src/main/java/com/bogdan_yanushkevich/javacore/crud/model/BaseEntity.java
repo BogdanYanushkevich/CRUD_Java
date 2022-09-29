@@ -3,8 +3,10 @@ package com.bogdan_yanushkevich.javacore.crud.model;
 public class BaseEntity<T> {
 
 
-    private T id;
-    private Status status = Status.ACTIVE;
+    T id;
+    private Status status;
+
+    private String name;
 
 
     public Status getStatus() {
@@ -22,5 +24,13 @@ public class BaseEntity<T> {
 
     public void setId(T id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
