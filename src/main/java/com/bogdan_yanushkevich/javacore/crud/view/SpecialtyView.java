@@ -48,19 +48,14 @@ public class SpecialtyView extends GeneralView<Specialty> {
 
                 print("Enter the ID of the element you want to change: ");
                 id = checkCorrect();
-                Specialty specialty = sc.read(id);
 
-                if (checkForNull(specialty)) {
+                if (checkForNull(sc.read(id))) {
                     print("Incorrect element ID, please try again.");
                     makeChoice();
 
                 } else {
-
                     print("Please enter new name: ");
-                    specialty.setName(addLine());
-                    specialty = sc.update(specialty);
-
-                    print("You changed: ", specialty);
+                    print("You changed: ", sc.update(addLine()));
                     makeChoice();
                 }
 

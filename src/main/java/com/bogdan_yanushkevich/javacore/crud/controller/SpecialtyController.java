@@ -1,5 +1,6 @@
 package com.bogdan_yanushkevich.javacore.crud.controller;
 
+
 import com.bogdan_yanushkevich.javacore.crud.model.Specialty;
 import com.bogdan_yanushkevich.javacore.crud.repository.impl.GsonSpecialtyRepositoryImpl;
 
@@ -18,8 +19,9 @@ public class SpecialtyController {
         return sr.read(field);
     }
 
-    public Specialty update(Specialty updSkill) {
-
+    public Specialty update(String name) {
+        Specialty updSkill = new Specialty();
+        updSkill.setName(name);
         return sr.update(updSkill);
     }
 

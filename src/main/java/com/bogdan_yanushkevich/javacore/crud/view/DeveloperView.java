@@ -8,6 +8,7 @@ import com.bogdan_yanushkevich.javacore.crud.model.Skill;
 import com.bogdan_yanushkevich.javacore.crud.model.Specialty;
 import com.bogdan_yanushkevich.javacore.crud.model.Status;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -28,11 +29,11 @@ public class DeveloperView extends GeneralView<Developer> {
                 dev.setName(addLine());
                 print("Enter developer lastname: ");
                 dev.setLastName(addLine());
-                Skill skill = skillReturner();
-                dev.addSkill(skill);
+                List<Skill> skills = new ArrayList<>();
+                dev.addSkills(skills);
+                dev.addSkill(skillReturner());
                 print("Success added.");
-                Specialty specialty = specialtyReturner();
-                dev.setSpecialty(specialty);
+                dev.setSpecialty(specialtyReturner());
                 print("Success added.");
                 print("You added: ", dc.create(dev));
                 makeChoice();
@@ -60,11 +61,9 @@ public class DeveloperView extends GeneralView<Developer> {
                 } else {
                     print(dev);
                     dev = updateMenu(dev);
-                    print(dev);
-                    dc.update(dev);
+                    print("You changed: ");
+                    print(dc.update(dev));
                     makeChoice();
-
-
                 }
 
             }

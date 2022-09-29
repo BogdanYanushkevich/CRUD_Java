@@ -2,7 +2,7 @@ package com.bogdan_yanushkevich.javacore.crud;
 import com.bogdan_yanushkevich.javacore.crud.view.ConsoleRunner;
 
 
-public class CRUD {
+public class AppRunner {
     public static void main(String[] args) {
 
 

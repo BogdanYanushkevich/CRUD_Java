@@ -21,8 +21,9 @@ public class SkillController {
         return sr.read(field);
     }
 
-    public Skill update(Skill updSkill) {
-
+    public Skill update(String name) {
+        Skill updSkill = new Skill();
+        updSkill.setName(name);
         return sr.update(updSkill);
     }
 

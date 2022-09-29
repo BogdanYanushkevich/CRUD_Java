@@ -1,6 +1,5 @@
 package com.bogdan_yanushkevich.javacore.crud.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Developer extends BaseEntity<Long> {
@@ -10,9 +9,6 @@ public class Developer extends BaseEntity<Long> {
     List<Skill> skills;
     private Specialty specialty;
 
-    {
-        skills = new ArrayList<>();
-    }
 
     public String getLastName() {
         return lastName;

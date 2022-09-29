@@ -48,25 +48,21 @@ public class GsonDeveloperRepositoryImpl implements DeveloperRepository {
 
     @Override
     public Developer update(Developer obj) {
-
+        Developer d = null;
         List<Developer> developers = getFromJson();
-        if (checkForRepeats(obj.getName())) {
-            return null;
-        } else {
-            for (Developer s : developers) {
 
-                if (s.getId().equals(obj.getId())) {
-                    s.setName(obj.getName());
-                    s.setLastName(obj.getLastName());
-                    s.addSkills(obj.getSkills());
-                    s.setSpecialty(obj.getSpecialty());
-                    writeToJson(developers);
-                    return s;
-                }
+        for (Developer s : developers) {
+            if (s.getId().equals(obj.getId())) {
+                s.setName(obj.getName());
+                s.setLastName(obj.getLastName());
+                s.addSkills(obj.getSkills());
+                s.setSpecialty(obj.getSpecialty());
+                writeToJson(developers);
+                d = s;
             }
         }
 
-        return null;
+        return d;
     }
 
     @Override
@@ -125,15 +121,4 @@ public class GsonDeveloperRepositoryImpl implements DeveloperRepository {
         } else return id;
         return id;
     }
-
-
-    private boolean checkForRepeats(String name) {
-
-        List<Developer> developers = getFromJson();
-
-        if (file.exists() && developers.size() != 0) {
-            return developers.stream().anyMatch(Developer -> Developer.getName().equals(name));
-        } else return false;
-    }
-
 }

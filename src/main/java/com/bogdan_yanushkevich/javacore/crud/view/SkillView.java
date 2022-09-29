@@ -47,19 +47,14 @@ public class SkillView extends GeneralView<Skill> {
 
                 print("Enter the ID of the element you want to change: ");
                 id = checkCorrect();
-                Skill skill = sc.read(id);
 
-                if (checkForNull(skill)) {
+                if (checkForNull(sc.read(id))) {
                     print("Incorrect element ID, please try again.");
                     makeChoice();
 
                 } else {
-
                     print("Please enter new name: ");
-                    skill.setName(addLine());
-                    skill = sc.update(skill);
-
-                    print("You changed: ", skill);
+                    print("You changed: ", sc.update(addLine()));
                     makeChoice();
                 }
 
@@ -68,17 +63,16 @@ public class SkillView extends GeneralView<Skill> {
 
                 print("Enter the ID of the element you want to delete: ");
                 id = checkCorrect();
-                Skill skill = sc.read(id);
-
-                if (!checkForNull(skill)) {
-                    sc.delete(skill);
-                    skill = sc.read(id);
-                    print("You deleted: ", skill);
-                    makeChoice();
-
-                } else {
+                if (checkForNull(sc.read(id))) {
                     print("Incorrect element ID, please try again.");
                     makeChoice();
+                } else {
+                    sc.delete(sc.read(id));
+                    print("You deleted: ", sc.read(id));
+                    makeChoice();
+
+
+
                 }
             }
             case 5 -> {
