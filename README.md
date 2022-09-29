@@ -47,4 +47,4 @@ class GsonDeveloperRepositoryImpl implements DeveloperRepository
 
   Если не установлена JVM
   1) Установить JVM и JRE
-  2) Повторить пункт "Если установлена JVM".
+  2) Повторить пункты из "Если установлена JVM".
