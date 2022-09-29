@@ -39,3 +39,8 @@ class GsonDeveloperRepositoryImpl implements DeveloperRepository
 Для импорта зависимостей - Maven/Gradle на выбор.
   
   ## Инструкция по запуску 
+  Если установлена JVM
+  1) Скачать файл Java CRUD_Java.jar https://github.com/BogdanYanushkevich/CRUD_Java/blob/master/CRUD_Java.jar
+  2) Открыть командную строку и прописать путь к папке где хранится скачанный ранее файл.
+  3) Запустить файл из кмоандной строки следующей командой: java -jar CRUD_Java.jar
+  4) Готово, вы великолепны. ;)
