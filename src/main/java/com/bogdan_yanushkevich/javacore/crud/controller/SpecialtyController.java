@@ -9,14 +9,15 @@ import java.util.List;
 public class SpecialtyController {
     private final GsonSpecialtyRepositoryImpl sr = new GsonSpecialtyRepositoryImpl();
 
-    public Specialty create(Specialty specialty) {
-
+    public Specialty create(String name) {
+        Specialty specialty = new Specialty();
+        specialty.setName(name);
         return sr.create(specialty);
     }
 
-    public Specialty read(Long field) {
+    public Specialty read(Long id) {
 
-        return sr.read(field);
+        return sr.read(id);
     }
 
     public Specialty update(String name) {
@@ -26,9 +27,9 @@ public class SpecialtyController {
     }
 
 
-    public void delete(Specialty updSkill) {
+    public void delete(Long id) {
 
-        sr.delete(updSkill);
+        sr.delete(id);
     }
 
     public List<Specialty> showAll() {

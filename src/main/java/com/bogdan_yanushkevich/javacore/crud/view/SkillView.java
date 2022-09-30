@@ -17,10 +17,10 @@ public class SkillView extends GeneralView<Skill> {
         Long id;
         switch (checkChoice(5, 0)) {
             case 1 -> {
-                Skill skill = new Skill();
+
                 print("Enter skill name: ");
-                skill.setName(addLine());
-                if (!checkForNull(sc.create(skill))) {
+                Skill skill = sc.create(addLine());
+                if (!checkForNull(skill)) {
                     print("You added: ", skill);
                     makeChoice();
                 } else {
@@ -67,10 +67,9 @@ public class SkillView extends GeneralView<Skill> {
                     print("Incorrect element ID, please try again.");
                     makeChoice();
                 } else {
-                    sc.delete(sc.read(id));
+                    sc.delete(id);
                     print("You deleted: ", sc.read(id));
                     makeChoice();
-
 
 
                 }

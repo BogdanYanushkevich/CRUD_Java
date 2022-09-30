@@ -11,14 +11,15 @@ public class SkillController {
 
     private final GsonSkillRepositoryImpl sr = new GsonSkillRepositoryImpl();
 
-    public Skill create(Skill skill) {
-
+    public Skill create(String name) {
+        Skill skill = new Skill();
+        skill.setName(name);
         return sr.create(skill);
     }
 
-    public Skill read(Long field) {
+    public Skill read(Long id) {
 
-        return sr.read(field);
+        return sr.read(id);
     }
 
     public Skill update(String name) {
@@ -28,9 +29,9 @@ public class SkillController {
     }
 
 
-    public void delete(Skill updSkill) {
+    public void delete(Long id) {
 
-        sr.delete(updSkill);
+        sr.delete(id);
     }
 
     public List<Skill> showAll() {

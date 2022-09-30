@@ -10,7 +10,7 @@ public interface GenericRepository<T, ID> {
 
     T update(T obj);
 
-    void delete(T obj);
+    void delete(ID id);
 
     List<T> getALl();
 

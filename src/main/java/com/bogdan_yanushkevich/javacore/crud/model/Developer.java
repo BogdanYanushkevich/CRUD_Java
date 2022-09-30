@@ -1,12 +1,13 @@
 package com.bogdan_yanushkevich.javacore.crud.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Developer extends BaseEntity<Long> {
 
 
     private String lastName;
-    List<Skill> skills;
+    List<Skill> skills = new ArrayList<>();
     private Specialty specialty;
 
 

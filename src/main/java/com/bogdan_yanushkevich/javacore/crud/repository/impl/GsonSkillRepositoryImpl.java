@@ -71,10 +71,10 @@ public class GsonSkillRepositoryImpl implements SkillRepository {
     }
 
     @Override
-    public void delete(Skill obj) {
+    public void delete(Long id) {
         List<Skill> skills = getFromJson();
         for (Skill s : skills) {
-            if (s.getId().equals(obj.getId())) {
+            if (s.getId().equals(id)) {
                 s.setStatus(Status.DELETED);
                 writeToJson(skills);
             }

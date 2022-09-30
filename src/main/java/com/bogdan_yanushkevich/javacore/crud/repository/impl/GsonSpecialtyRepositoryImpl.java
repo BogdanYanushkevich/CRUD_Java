@@ -72,10 +72,10 @@ public class GsonSpecialtyRepositoryImpl implements SpecialtyRepository {
     }
 
     @Override
-    public void delete(Specialty obj) {
+    public void delete(Long id) {
         List<Specialty> specialties = getFromJson();
         for (Specialty s : specialties) {
-            if (s.getId().equals(obj.getId())) {
+            if (s.getId().equals(id)) {
                 s.setStatus(Status.DELETED);
                 writeToJson(specialties);
             }

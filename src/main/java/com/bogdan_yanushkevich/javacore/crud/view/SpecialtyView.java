@@ -18,10 +18,9 @@ public class SpecialtyView extends GeneralView<Specialty> {
         Long id;
         switch (checkChoice(5,0)) {
             case 1 -> {
-                Specialty specialty = new Specialty();
                 print("Enter the name: ");
-                specialty.setName(addLine());
-                if (!checkForNull(sc.create(specialty))) {
+                Specialty specialty = sc.create(addLine());
+                if (!checkForNull(specialty)) {
                     print("You added: ", specialty);
                     makeChoice();
                 } else {
@@ -64,12 +63,9 @@ public class SpecialtyView extends GeneralView<Specialty> {
 
                 print("Enter the ID of the element you want to delete: ");
                 id = checkCorrect();
-                Specialty specialty = sc.read(id);
-
-                if (!checkForNull(specialty)) {
-                    sc.delete(specialty);
-                    specialty = sc.read(id);
-                    print("You deleted: ", specialty);
+                if (!checkForNull(sc.read(id))) {
+                    sc.delete(id);
+                    print("You deleted: ", sc.read(id));
                     makeChoice();
 
                 } else {

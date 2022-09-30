@@ -66,10 +66,10 @@ public class GsonDeveloperRepositoryImpl implements DeveloperRepository {
     }
 
     @Override
-    public void delete(Developer obj) {
+    public void delete(Long id) {
         List<Developer> developers = getFromJson();
         for (Developer s : developers) {
-            if (s.getId().equals(obj.getId())) {
+            if (s.getId().equals(id)) {
                 s.setStatus(Status.DELETED);
                 writeToJson(developers);
             }

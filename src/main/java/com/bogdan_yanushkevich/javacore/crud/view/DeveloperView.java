@@ -29,13 +29,12 @@ public class DeveloperView extends GeneralView<Developer> {
                 dev.setName(addLine());
                 print("Enter developer lastname: ");
                 dev.setLastName(addLine());
-                List<Skill> skills = new ArrayList<>();
-                dev.addSkills(skills);
-                dev.addSkill(skillReturner());
+                Skill newSkill = skillReturner();
+                dev.addSkill(newSkill);
                 print("Success added.");
                 dev.setSpecialty(specialtyReturner());
                 print("Success added.");
-                print("You added: ", dc.create(dev));
+                print("You added: ", dc.create(dev.getName(), dev.getLastName(), dev.getSkills(), dev.getSpecialty()));
                 makeChoice();
             }
 
@@ -62,7 +61,7 @@ public class DeveloperView extends GeneralView<Developer> {
                     print(dev);
                     dev = updateMenu(dev);
                     print("You changed: ");
-                    print(dc.update(dev));
+                    print(dc.update(dev.getId(), dev.getName(), dev.getLastName(), dev.getSkills(), dev.getSpecialty()));
                     makeChoice();
                 }
 
@@ -71,12 +70,10 @@ public class DeveloperView extends GeneralView<Developer> {
 
                 print("Enter the ID of the element you want to delete: ");
                 id = checkCorrect();
-                Developer dev = dc.read(id);
 
-                if (!checkForNull(dev)) {
-                    dc.delete(dev);
-                    dev = dc.read(id);
-                    print("You deleted: ", dev);
+                if (!checkForNull(dc.read(id))) {
+                    dc.delete(id);
+                    print("You deleted: ", dc.read(id));
                     makeChoice();
 
                 } else {
@@ -114,14 +111,14 @@ public class DeveloperView extends GeneralView<Developer> {
                     print("There is no such skill, add a new one.");
                     skillReturner();
                 } else {
+                    System.out.println("skill found");
                     return skill;
                 }
             }
             case 2 -> {
-                Skill skill = new Skill();
+
                 print("Enter skill name: ");
-                skill.setName(addLine());
-                skill = sc.create(skill);
+                Skill skill = sc.create(addLine());
                 if (skill != null) {
                     return skill;
                 } else {
@@ -155,10 +152,8 @@ public class DeveloperView extends GeneralView<Developer> {
                 }
             }
             case 2 -> {
-                Specialty specialty = new Specialty();
                 print("Enter specialty name: ");
-                specialty.setName(addLine());
-                specialty = spc.create(specialty);
+                Specialty specialty = spc.create(addLine());
                 if (specialty != null) {
                     return specialty;
                 } else {

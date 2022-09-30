@@ -1,6 +1,8 @@
 package com.bogdan_yanushkevich.javacore.crud.controller;
 
 import com.bogdan_yanushkevich.javacore.crud.model.Developer;
+import com.bogdan_yanushkevich.javacore.crud.model.Skill;
+import com.bogdan_yanushkevich.javacore.crud.model.Specialty;
 import com.bogdan_yanushkevich.javacore.crud.repository.impl.GsonDeveloperRepositoryImpl;
 
 import java.util.List;
@@ -9,8 +11,12 @@ public class DeveloperController {
 
     private final GsonDeveloperRepositoryImpl dr = new GsonDeveloperRepositoryImpl();
 
-    public Developer create(Developer dev) {
-
+    public Developer create(String firtsname, String lastname, List<Skill> skills, Specialty specialty) {
+        Developer dev = new Developer();
+        dev.setName(firtsname);
+        dev.setLastName(lastname);
+        dev.addSkills(skills);
+        dev.setSpecialty(specialty);
         return dr.create(dev);
     }
 
@@ -19,15 +25,15 @@ public class DeveloperController {
         return dr.read(field);
     }
 
-    public Developer update(Developer updSkill) {
-
-        return dr.update(updSkill);
+    public Developer update(Long id, String firtsname, String lastname, List<Skill> skills, Specialty specialty) {
+        Developer dev = new Developer();
+        return dr.update(dev);
     }
 
 
-    public void delete(Developer updSkill) {
+    public void delete(Long id) {
 
-        dr.delete(updSkill);
+        dr.delete(id);
     }
 
     public List<Developer> showAll() {
