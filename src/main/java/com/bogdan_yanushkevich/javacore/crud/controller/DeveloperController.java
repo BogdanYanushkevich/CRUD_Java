@@ -27,6 +27,11 @@ public class DeveloperController {
 
     public Developer update(Long id, String firtsname, String lastname, List<Skill> skills, Specialty specialty) {
         Developer dev = new Developer();
+        dev.setId(id);
+        dev.setName(firtsname);
+        dev.setLastName(lastname);
+        dev.addSkills(skills);
+        dev.setSpecialty(specialty);
         return dr.update(dev);
     }
 

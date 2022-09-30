@@ -7,8 +7,6 @@ import com.bogdan_yanushkevich.javacore.crud.model.Developer;
 import com.bogdan_yanushkevich.javacore.crud.model.Skill;
 import com.bogdan_yanushkevich.javacore.crud.model.Specialty;
 import com.bogdan_yanushkevich.javacore.crud.model.Status;
-
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
